@@ -1,1 +1,12 @@
+<%= form_for @comment do |f| %>
+  <%= f.label "Content" %>
+  <%= f.text_field :content %> 
+  <%= f.collection_select :user_id, User.all, :id, :username %>
+  
+  
+  <%= f.submit %>
+<% end %>
 
+<%@post.comments.each do |comment|%>
+<%=comment.user.username%> says: <%=comment.content%>
+<%end%> 
