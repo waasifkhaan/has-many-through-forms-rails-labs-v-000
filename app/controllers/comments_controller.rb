@@ -1,21 +1,14 @@
 class CommentsController < ApplicationController
 
   def create
-    if comment_params['user_attributes']['username'] != ""
-      user = User.create(username: comment_params['user_attributes']['username'])
-      comment = Comment.create(
-        post_id: comment_params['post_id'],
-        user_id: user.id,
-        content: comment_params['content'],
-      )
-    else
-      comment = Comment.create(
-      post_id: comment_params['post_id'],
-      user_id: comment_params['user_id'],
-      content: comment_params['content']
-      )
-    end
-    
+  
+    name = comment_params['user_attributes']['username']
+    comment = Comment.new 
+    comment.post_id = comment_params['post_id']
+    comment.content = comment_params['content']
+    id =(name.empty? ? comment_params['user_id'] : User.create(username: name).id)
+    comment.user_id = id
+    comment.save
     redirect_to comment.post
   end
 

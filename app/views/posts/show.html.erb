@@ -1,7 +1,9 @@
 <h1><%=@post.title%></h1>
 
 <p><%=@post.content%></p>
-
+<%@post.categories.each do |cat|%>
+<p><%=cat.name%></p>
+<%end%>
 
 <%= form_for @comment do |f| %>
   <div>
@@ -19,6 +21,7 @@
     <h3>Create a User</h3>
     <%= f.fields_for :user, @comment.user do |user_fields| %>
       <%= user_fields.text_field :username %>
+      <%= user_fields.text_field :email %>
     <%end%>
   </div>
   
