@@ -6,7 +6,6 @@ class Comment < ActiveRecord::Base
   def username 
     if self.user
       self.user.username
-    else 
     end 
   end 
 end
