@@ -7,5 +7,6 @@ class Comment < ActiveRecord::Base
     if self.user
       self.user.username
     else 
+    end 
   end 
 end
