@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
 
   def create
-  
     name = comment_params['user_attributes']['username']
     comment = Comment.new 
     comment.post_id = comment_params['post_id']
@@ -9,6 +8,7 @@ class CommentsController < ApplicationController
     id =(name.empty? ? comment_params['user_id'] : User.create(username: name).id)
     comment.user_id = id
     comment.save
+   
     redirect_to comment.post
   end
 

@@ -17,11 +17,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    binding.pry
+   
     post = Post.create(post_params)
-    # post.title = post_params['title']
-    # post.content = post_params['content']
-    # post.save
+   
     redirect_to post
   end
 
