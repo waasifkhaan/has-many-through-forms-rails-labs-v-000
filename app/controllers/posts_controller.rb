@@ -3,23 +3,19 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comment.build_user
-    
   end
 
   def index
     @posts = Post.all
   end
-
   def new
     @post = Post.new
     @categories = Category.all
-    @post.categories.build 
+    @post.categories.build
   end
 
   def create
-   
     post = Post.create(post_params)
-   
     redirect_to post
   end
 

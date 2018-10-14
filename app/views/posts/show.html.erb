@@ -12,10 +12,10 @@
 <%= form_for @comment do |f| %>
   <div>
     <%= f.label "Content" %>
-    <%= f.text_field :content %> 
-    <%= f.hidden_field :post_id, :value => @post.id%> 
+    <%= f.text_field :content %>
+    <%= f.hidden_field :post_id, :value => @post.id%>
   </div>
-  
+
   <div>
     <h3>Select a User</h3>
     <%= f.collection_select :user_id, User.all, :id, :username %>
@@ -25,10 +25,10 @@
     <h3>Create a User</h3>
     <%= f.fields_for :user, @comment.user do |user_fields| %>
       <%= user_fields.text_field :username %>
-      
+
     <%end%>
   </div>
-  
+
   <%= f.submit %>
 <% end %>
 
@@ -36,11 +36,12 @@
 <%@post.comments.each do |comment|%>
 
   <p><%=comment.username%> says: <%=comment.content%></p>
-<%end%> 
+<%end%>
 
-<h3>Link To Users</h3>
-<%@post.comments.each do |comment|%>
-<%=link_to User.find(comment.user_id).username, User.find(comment.user_id)_path(User.find(comment.user_id))%> 
+<h3> List of Users who commented this post! </h3>
+
+<% @post.users.uniq.each do |user|%>
+<%= link_to user.username, user_path(user) %>
 <%end%>
 
 
